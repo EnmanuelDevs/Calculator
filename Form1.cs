@@ -14,7 +14,7 @@ namespace Calculator
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(txtNumber.Text,out int number))
+            if (!long.TryParse(txtNumber.Text,out long number))
             {
                 MessageBox.Show("Enter a valid integer.", "Error");
                 return;
@@ -27,9 +27,15 @@ namespace Calculator
             }
             else
             {
-                int factorial = 1;
+                long factorial = 1;
                 for (int i = 1; i <= number; i++)
                 {
+
+                    if (factorial > long.MaxValue / i)
+                    {
+                        MessageBox.Show("The number is to much bigger to calculate the factorial", "Error");
+                        return;
+                    }
                     factorial *= i;
                 }
 
